@@ -20,6 +20,8 @@ function run() {
     const s3Uri = `s3://${bucket}`
     exec.exec(`aws s3 sync ${distFolder} ${s3Uri} --region ${bucketRegion}`) //synchronize the local folder to an s3 bucket
 
+    const websiteUrl = `http://${bucket}.s3-website-${bucketRegion}.amazonaws.com`
+    core.setOutput('website-url', websiteUrl); //::set-output
 
     core.notice('Hello from my custom JavaScript Action!');
 }
